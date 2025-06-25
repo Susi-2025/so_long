@@ -5,54 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/24 13:48:38 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/24 14:25:52 by vinguyen         ###   ########.fr        #
+#    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
+#    Updated: 2025/06/25 19:07:14 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=so_long
+NAME = so_long
 
-LIBFT=./library/Libft/libft.a
+SRC =	so_long.c \
+		so_long_utils.c \
+		ft_parsing.c \
+		ft_strlen.c \
+		ft_strncmp.c \
+		ft_strjoin.c \
+		ft_gnl.c \
+		ft_strdup.c \
+		ft_split.c
+		
+OBJ = $(SRC:.c=.o)
 
-CC=cc
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-CFLAGS=-Wall -Werror -Wextra
-MLX_FLAGS=-lmlx -lXext -lX11
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-VALGRIND=@valgrind --leak-check=full --show-leak-kinds=all
-
-REMOVE=rm -f
-
-SRCS_DIR=./sources/
-OBJ_DIR=./obj/
-
-SRCS=	so_long.c
-SRCS_PATH=$(addprefix $(SRCS_DIR), $(SRCS))
-OBJS=$(patsubst $(SRCS_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS_PATH))
-
-all: $(LIBFT) $(NAME)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
-
-$(OBJ_DIR)%.o: $(SRCS_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(LIBFT):
-	make -C ./library/Libft
-
-clean: 
-	make clean -C ./library/Libft
-	$(REMOVE) $(OBJS)
+clean:
+	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C ./library/Libft
-	$(REMOVE) $(NAME)
+	rm -f $(NAME)
 
-re: fclean all
-
-run: $(NAME)
-	$(VALGRIND) ./$(NAME) assets/maps/valid/map.ber
-
-.PHONY: all clean fclean run
+re: fclean $(NAME)
