@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 19:55:08 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 18:37:48 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/16 15:07:20 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/26 13:11:22 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
-int	main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	t_game	*game;
-	char	**map;
+	const char		*p;
+	unsigned char	ch;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		exit (EXIT_FAILURE);
-	map = ft_parsing(ac, av, game);
-	ft_check_map(map, game);
-//	ft_init(game, av);
-//	ft_render(game);
-	free(game);
-	ft_free_map(map);
-	return (0);
+	p = s;
+	ch = (unsigned char)c ;
+	while (*p)
+	{
+		if (*p == ch)
+			return ((char *)p);
+		p++;
+	}
+	if (ch == '\0')
+		return ((char *)p);
+	return (NULL);
 }

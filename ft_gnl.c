@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:52:30 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/25 16:17:11 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:26:52 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 char	*ft_gnl(int fd)
 {
 	char	*buffer;
-	char	c;
-	int		i;
-	int		byte;
 
 	if (fd < 0)
 		return (NULL);
 	buffer = (char *)malloc(1000000);
 	if (!buffer)
 		return (NULL);
+	return (ft_gnl_assign(buffer, fd));
+}
+
+char	*ft_gnl_assign(char *buffer, int fd)
+{
+	char	c;
+	int		i;
+	int		byte;
+
 	byte = read(fd, &c, 1);
 	i = 0;
 	while (byte > 0)
@@ -31,7 +37,7 @@ char	*ft_gnl(int fd)
 		buffer[i] = c;
 		i++;
 		if (c == EOF || c == '\n')
-			break;
+			break ;
 		byte = read(fd, &c, 1);
 	}
 	if (i == 0 || byte < 0)

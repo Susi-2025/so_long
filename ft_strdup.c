@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:25:02 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/25 18:38:54 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:30:26 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -32,4 +32,4 @@ char	*ft_strdup(const char *s)
 	}
 	out[i] = '\0';
 	return (out);
-}	
+}
