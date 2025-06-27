@@ -6,11 +6,16 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 19:43:29 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/27 20:43:47 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static	void	init_check_remain(t_map *map, int i, int j);
+static	void	init_start_end(t_map *map, int i, int j);
+static	void	valid_path(t_map *map);
+static	void	flood_fill(t_map *map, char **visit, int row, int col);
 
 void	initial_map(char *map_temp, t_map *map)
 {
@@ -35,9 +40,11 @@ void	initial_map(char *map_temp, t_map *map)
 		i++;
 	}
 	init_check_remain(map, 0, 0);
+	init_start_end(map, 0, 0);
+	valid_path(map);
 }
 
-void	init_check_remain(t_map *map, int i, int j)
+static	void	init_check_remain(t_map *map, int i, int j)
 {
 	while (i < map->rows)
 	{
@@ -61,4 +68,51 @@ void	init_check_remain(t_map *map, int i, int j)
 	}
 	if (map->p_count != 1 || map->e_count != 1 || map->c_count == 0)
 		map_error("Map has wrong number of P,C,E", map);
+}
+
+static	void	init_start_end(t_map *map, int i, int j)
+{
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->cols)
+		{
+			if (map->arr[i][j] == 'P')
+				map->start = (t_point){i, j};
+			if (map->arr[i][j] == 'E')
+				map->end = (t_point){i, j};
+			j++;
+		}
+		i++;
+	}
+}
+
+static	void	flood_fill(t_map *map, char **visit, int row, int col)
+{
+	if (visit[row][col] == '1')
+		return;
+	if (visit[row][col] == 'C')
+		map->c_collect++;
+	else if (visit[row][col] == 'E')
+		map->exit_path++;
+	visit[row][col] = '1';
+	flood_fill(map, visit, row + 1, col);
+	flood_fill(map, visit, row - 1, col);
+	flood_fill(map, visit, row, col + 1);
+	flood_fill(map, visit, row, col - 1);
+}
+
+static	void	valid_path(t_map *map)
+{
+	char	**visit;
+
+	visit = ft_matrix_dup(map->arr, map->rows);
+	if (!visit)
+		map_error("Mem allocation fail", map);
+	flood_fill(map, visit, map->start.row, map->start.col);
+	ft_free_triptr(&visit);
+	if (!map->exit_path)
+		map_error("No valid path to play", map);
+	if (map->c_collect != map->c_count)
+		map_error("No valid path to collect all coin", map);
 }

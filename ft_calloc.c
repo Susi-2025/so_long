@@ -1,13 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 20:59:26 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/21 18:59:59 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/27 20:11:53 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t			i;
+	size_t			check_overflow;
+	unsigned char	*ptr;
+
+	i = 0;
+	if (nmemb == 0 || size == 0)
+	{
+		ptr = malloc(1);
+		*ptr = '\0';
+		return (ptr);
+	}
+	check_overflow = nmemb * size;
+	if (check_overflow / nmemb != size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	while (i < (nmemb * size))
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
+}

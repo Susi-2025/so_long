@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/27 17:36:49 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/27 20:14:05 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ SRC =	so_long.c \
 		parsing.c \
 		par_error.c \
 		initial.c \
-		init_check_map.c \
-		ft_check_content.c \
 		ft_strlen.c \
 		ft_strncmp.c \
 		ft_strjoin.c \
@@ -27,8 +25,11 @@ SRC =	so_long.c \
 		ft_split.c \
 		ft_strchr.c \
 		ft_bzero.c \
-		ft_free_triptr.c
-		
+		ft_free_triptr.c \
+		ft_calloc.c \
+		ft_matrix_dup.c \
+
+
 OBJ = $(SRC:.c=.o)
 
 CC = cc
