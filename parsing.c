@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 18:49:03 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/27 15:07:11 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**ft_parsing(int ac, char **av, t_game *game)
+char	*parsing(int ac, char **av)
 {
 	int		fd;
 	char	*map_read;
-	char	**map;
 
 	if (ac != 2)
-		ft_error("Wrong arguments", game);
-	fd = ft_open_file_check(av[1], game);
-	map_read = ft_read_map(fd, game);
+		par_error("Wrong arguments");
+	fd = par_valid_name(av[1]);
+	map_read = par_read_map(fd);
 	close(fd);
-	ft_check_empty(map_read, game);
-	map = ft_init_map(map_read, game);
-	return (map);
+	par_empty_line(map_read);
+	return (map_read);
 }
 
-int	ft_open_file_check(char *name, t_game *game)
+int	par_valid_name(char *name)
 {
 	int		fd;
 	char	*filepath;
@@ -36,18 +34,18 @@ int	ft_open_file_check(char *name, t_game *game)
 
 	len = ft_strlen(name);
 	if ((len < 5) || (ft_strncmp(name + len - 4, ".ber", 4) != 0))
-		ft_error("Wrong file name", game);
+		par_error("Wrong file name");
 	filepath = ft_strjoin("./maps/", name);
 	if (!filepath)
-		ft_error("Memory allocation fail", game);
+		par_error("Memory allocation fail");
 	fd = open(filepath, O_RDONLY);
 	free(filepath);
 	if (fd == -1)
-		ft_error("Couldn't open file\n", game);
+		par_error("Couldn't open file\n");
 	return (fd);
 }
 
-char	*ft_read_map(int fd, t_game *game)
+char	*par_read_map(int fd)
 {
 	char	*map_temp;
 	char	*out_temp;
@@ -56,18 +54,18 @@ char	*ft_read_map(int fd, t_game *game)
 
 	out = ft_strdup("");
 	if (!out)
-		ft_error("Malloc error\n", game);
+		par_fd_error("Malloc error\n", fd);
 	count = 0;
 	while (1)
 	{
 		map_temp = ft_gnl(fd);
 		if (map_temp == NULL && count == 0)
-			ft_error_malloc("Map file is empty", map_temp, out, game);
+			par_error_malloc("Map file is empty", map_temp, out, fd);
 		if (!map_temp)
 			break ;
 		out_temp = ft_strjoin(out, map_temp);
 		if (!out_temp)
-			ft_error_malloc("Join map error", map_temp, out, game);
+			par_error_malloc("Join map error", map_temp, out, fd);
 		free(out);
 		free(map_temp);
 		out = out_temp;
@@ -76,7 +74,7 @@ char	*ft_read_map(int fd, t_game *game)
 	return (out);
 }
 
-void	ft_check_empty(char *map_read, t_game *game)
+void	par_empty_line(char *map_read)
 {
 	int	i;
 
@@ -84,24 +82,15 @@ void	ft_check_empty(char *map_read, t_game *game)
 	while (map_read[i] && map_read[i + 1])
 	{
 		if (map_read[0] == '\n')
-			ft_error_malloc("Empty line at begin", map_read, NULL, game);
+		{
+			free(map_read);
+			par_error("Empty line at begin");
+		}
 		if (map_read[i] == '\n' && map_read[i + 1] == '\n')
-			ft_error_malloc("Map has empty line", map_read, NULL, game);
+		{
+			free(map_read);
+			par_error("Map has empty line");
+		}
 		i++;
 	}
-}
-
-char	**ft_init_map(char *map_temp, t_game *game)
-{
-	int		i;
-	char	**map;
-
-	map = ft_split(map_temp, '\n');
-	free(map_temp);
-	if (!map)
-		ft_error_map("Split map error", map, game);
-	i = 0;
-	while (map[i])
-		printf("Map value is: %s\n", map[i++]);
-	return (map);
 }

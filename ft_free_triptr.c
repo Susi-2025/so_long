@@ -1,49 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_free_triptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 15:33:25 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/06/27 15:36:23 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/27 17:47:21 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error_map(char *str, char **map)
-{
-	ft_free_map(map);
-	ft_error(str);
-}
-
-void	ft_error_malloc(char *str, char *m1, char *m2)
-{
-	free(m1);
-	free(m2);
-	ft_error(str);
-}
-
-void	ft_error(char *str)
-{
-	write(1, "Error\n", 6);
-	write(1, str, ft_strlen(str));
-	write(1, "\n", 1);
-	exit (EXIT_FAILURE);
-}
-
-void	ft_free_map(char **map)
+void	ft_free_triptr(char ***str)
 {
 	int	i;
 
-	if (!map)
-		return ;
 	i = 0;
-	while (map[i])
+	if (*str)
 	{
-		free(map[i]);
-		i++;
+		while ((*str)[i] != NULL)
+		{
+			free((*str)[i]);
+			i++;
+		}
+		free(*str);
+		*str = NULL;
 	}
-	free(map);
 }

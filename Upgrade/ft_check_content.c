@@ -6,19 +6,19 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 15:29:07 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:21:48 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_check_content(char **map, t_game *game)
+void	ft_check_content(char **map)
 {
-	ft_check_inside(map, game);
-	ft_check_ep(map, game);
+	ft_check_inside(map);
+	ft_check_ep(map);
 }
 
-void	ft_check_inside(char **map, t_game *game)
+void	ft_check_inside(char **map)
 {
 	int	i;
 	int	j;
@@ -30,14 +30,14 @@ void	ft_check_inside(char **map, t_game *game)
 		while (map[i][j])
 		{
 			if (!ft_strchr("01CEP", map[i][j]))
-				ft_error_map("Invalid map", map, game);
+				ft_error_map("Invalid map", map);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_check_ep(char **map, t_game *game)
+void	ft_check_ep(char **map)
 {
 	int	i;
 	int	j;
@@ -62,5 +62,5 @@ void	ft_check_ep(char **map, t_game *game)
 		i++;
 	}
 	if (exist_e != 1 || exist_p != 1 || exist_c == 0)
-		ft_error_map("Map have invalid E,P,C", map, game);
+		ft_error_map("Map have invalid E,P,C", map);
 }

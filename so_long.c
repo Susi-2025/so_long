@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 19:55:08 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 18:37:48 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:27:33 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int	main(int ac, char **av)
 {
-	t_game	*game;
-	char	**map;
+	char	*map_read;
+	t_map	map;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		exit (EXIT_FAILURE);
-	map = ft_parsing(ac, av, game);
-	ft_check_map(map, game);
-//	ft_init(game, av);
-//	ft_render(game);
-	free(game);
-	ft_free_map(map);
+	map_read = parsing(ac, av);
+	ft_bzero(&map, sizeof(map));
+	initial_map(map_read, &map);
+	
+	map_error("Close", &map);
 	return (0);
 }

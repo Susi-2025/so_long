@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/26 15:09:25 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/27 17:36:49 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ NAME = so_long
 
 SRC =	so_long.c \
 		so_long_utils.c \
-		ft_parsing.c \
-		ft_check_map.c \
+		parsing.c \
+		par_error.c \
+		initial.c \
+		init_check_map.c \
 		ft_check_content.c \
 		ft_strlen.c \
 		ft_strncmp.c \
@@ -23,7 +25,9 @@ SRC =	so_long.c \
 		ft_gnl.c \
 		ft_strdup.c \
 		ft_split.c \
-		ft_strchr.c
+		ft_strchr.c \
+		ft_bzero.c \
+		ft_free_triptr.c
 		
 OBJ = $(SRC:.c=.o)
 
@@ -32,6 +36,15 @@ CFLAGS = -Wall -Werror -Wextra
 
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+$(MLX42): .mlx42
+.mlx42: 
+	@$(RM) $(MLX42_DIR)
+	@git clone https://github.com/codam-coding-college/MLX42.git $(MLX42_DIR)
+	@cd $(MLX42_DIR) && mkdir -p build && cd build && cmake .. && cmake --build . -j4
+	@cd ..
+	@$(RM) $(MLX42_DIR)/.git
+	@touch .mlx42
 
 clean:
 	rm -f $(OBJ)

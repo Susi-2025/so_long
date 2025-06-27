@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   par_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 15:33:25 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/27 17:38:59 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error_map(char *str, char **map)
+void	par_error_malloc(char *str, char *m1, char *m2, int fd)
 {
-	ft_free_map(map);
-	ft_error(str);
-}
-
-void	ft_error_malloc(char *str, char *m1, char *m2)
-{
+	close(fd);
 	free(m1);
 	free(m2);
-	ft_error(str);
+	par_error(str);
 }
 
-void	ft_error(char *str)
+void	par_error(char *str)
 {
 	write(1, "Error\n", 6);
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
 	exit (EXIT_FAILURE);
 }
-
-void	ft_free_map(char **map)
+void	par_fd_error(char *str, int fd)
 {
-	int	i;
+	close(fd);
+	par_error(str);
+}
 
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+void	map_error(char *str, t_map *map)
+{
+	if (map && map->arr)
+		ft_free_triptr(&map->arr);
+	par_error(str);
 }
