@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix_dup.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 20:08:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 20:10:52 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/21 14:58:27 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/28 11:52:37 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "library.h"
 
-#include "so_long.h"
-
-char	**ft_matrix_dup(char **matrix, int row)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	**out;
-	int		i;
-	
-	out = (char **)ft_calloc(row + 1, sizeof(char *));
-	if (!out)
-		return (NULL);
+	size_t			i;
+	unsigned char	*temp_s1;
+	unsigned char	*temp_s2;
+
 	i = 0;
-	while (i < row)
+	if (n == 0)
+		return (0);
+	temp_s1 = (unsigned char *)s1;
+	temp_s2 = (unsigned char *)s2;
+	while ((temp_s1[i]) && (temp_s2[i]) && (i < n))
 	{
-		out[i] = ft_strdup(matrix[i]);
-		if (!out[i])
-		{
-			ft_free_triptr(&out);
-			return (NULL);
-		}
+		if (temp_s1[i] != temp_s2[i])
+			return (temp_s1[i] - temp_s2[i]);
 		i++;
 	}
-	return (out);
+	if (i == n)
+		return (0);
+	return (temp_s1[i] - temp_s2[i]);
 }

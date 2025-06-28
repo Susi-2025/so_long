@@ -6,10 +6,10 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 18:59:59 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 20:11:53 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:50:41 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "library.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

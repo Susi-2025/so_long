@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_triptr.c                                   :+:      :+:    :+:   */
+/*   ft_matrix_dup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 15:36:23 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 17:47:21 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/06/27 20:08:00 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/28 13:22:25 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "library.h"
 
-void	ft_free_triptr(char ***str)
+char	**ft_matrix_dup(char **matrix, int row)
 {
-	int	i;
+	char	**out;
+	int		i;
 
+	out = (char **)ft_calloc(row + 1, sizeof(char *));
+	if (!out)
+		return (NULL);
 	i = 0;
-	if (*str)
+	while (i < row)
 	{
-		while ((*str)[i] != NULL)
+		out[i] = ft_strdup(matrix[i]);
+		if (!out[i])
 		{
-			free((*str)[i]);
-			i++;
+			ft_free_triptr(&out);
+			return (NULL);
 		}
-		free(*str);
-		*str = NULL;
+		i++;
 	}
+	return (out);
 }

@@ -6,11 +6,15 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 15:07:11 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:20:08 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static	int	par_valid_name(char *name);
+static	char	*par_read_map(int fd);
+static	void	par_empty_line(char *map_read);
 
 char	*parsing(int ac, char **av)
 {
@@ -26,7 +30,7 @@ char	*parsing(int ac, char **av)
 	return (map_read);
 }
 
-int	par_valid_name(char *name)
+static	int	par_valid_name(char *name)
 {
 	int		fd;
 	char	*filepath;
@@ -45,7 +49,7 @@ int	par_valid_name(char *name)
 	return (fd);
 }
 
-char	*par_read_map(int fd)
+static	char	*par_read_map(int fd)
 {
 	char	*map_temp;
 	char	*out_temp;
@@ -74,7 +78,7 @@ char	*par_read_map(int fd)
 	return (out);
 }
 
-void	par_empty_line(char *map_read)
+static	void	par_empty_line(char *map_read)
 {
 	int	i;
 

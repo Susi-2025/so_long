@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 15:07:20 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 13:11:22 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/21 20:46:53 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/28 11:52:10 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "library.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	const char		*p;
-	unsigned char	ch;
+	int		len1;
+	int		len2;
+	int		i;
+	char	*out;
 
-	p = s;
-	ch = (unsigned char)c ;
-	while (*p)
-	{
-		if (*p == ch)
-			return ((char *)p);
-		p++;
-	}
-	if (ch == '\0')
-		return ((char *)p);
-	return (NULL);
+	i = -1;
+	len1 = 0;
+	len2 = 0;
+	while (s1[len1])
+		len1++;
+	while (s2[len2])
+		len2++;
+	out = (char *)malloc(len1 + len2 + 1);
+	if (!out)
+		return (NULL);
+	while (++i < len1)
+		out[i] = s1[i];
+	i = -1;
+	while (++i < len2)
+		out[len1 + i] = s2[i];
+	out[len1 + i] = '\0';
+	return (out);
 }

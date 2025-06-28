@@ -6,10 +6,10 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 10:11:02 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/25 12:57:35 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:52:22 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "library.h"
 
 size_t	ft_strlen(const char *s)
 {

@@ -6,10 +6,10 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:47:43 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/25 19:06:24 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:51:29 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "library.h"
 
 static unsigned int	ft_count(const char *s, char c)
 {

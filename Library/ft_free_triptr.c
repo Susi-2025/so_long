@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_free_triptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 19:25:02 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 11:30:26 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/06/27 15:36:23 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/28 11:53:04 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
 
-char	*ft_strdup(const char *s)
+#include "library.h"
+
+void	ft_free_triptr(char ***str)
 {
-	char				*out;
-	char				*temp_in;
-	unsigned int		i;
+	int	i;
 
 	i = 0;
-	temp_in = (char *)s;
-	while (temp_in[i])
-		i++;
-	out = malloc(i + 1);
-	if (!out)
-		return (0);
-	i = 0;
-	while (temp_in[i])
+	if (*str)
 	{
-		out[i] = temp_in[i];
-		i++;
+		while ((*str)[i] != NULL)
+		{
+			free((*str)[i]);
+			i++;
+		}
+		free(*str);
+		*str = NULL;
 	}
-	out[i] = '\0';
-	return (out);
 }

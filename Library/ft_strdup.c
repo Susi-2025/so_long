@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 14:58:27 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/25 12:57:54 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/21 19:25:02 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/06/28 11:51:57 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "library.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strdup(const char *s)
 {
-	size_t			i;
-	unsigned char	*temp_s1;
-	unsigned char	*temp_s2;
+	char				*out;
+	char				*temp_in;
+	unsigned int		i;
 
 	i = 0;
-	if (n == 0)
+	temp_in = (char *)s;
+	while (temp_in[i])
+		i++;
+	out = malloc(i + 1);
+	if (!out)
 		return (0);
-	temp_s1 = (unsigned char *)s1;
-	temp_s2 = (unsigned char *)s2;
-	while ((temp_s1[i]) && (temp_s2[i]) && (i < n))
+	i = 0;
+	while (temp_in[i])
 	{
-		if (temp_s1[i] != temp_s2[i])
-			return (temp_s1[i] - temp_s2[i]);
+		out[i] = temp_in[i];
 		i++;
 	}
-	if (i == n)
-		return (0);
-	return (temp_s1[i] - temp_s2[i]);
+	out[i] = '\0';
+	return (out);
 }

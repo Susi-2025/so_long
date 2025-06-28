@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/27 20:43:47 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:20:46 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static	void	init_start_end(t_map *map, int i, int j)
 static	void	flood_fill(t_map *map, char **visit, int row, int col)
 {
 	if (visit[row][col] == '1')
-		return;
+		return ;
 	if (visit[row][col] == 'C')
 		map->c_collect++;
 	else if (visit[row][col] == 'E')

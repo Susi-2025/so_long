@@ -6,11 +6,11 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:52:30 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/26 11:26:52 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:50:56 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "library.h"
 
 char	*ft_gnl(int fd)
 {
