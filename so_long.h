@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 15:16:56 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:17:26 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_game
 	t_point		current;
 	t_point		next;
 	int			collect;
+	int			move;
 }	t_game;
 
 void	par_error(char *str);

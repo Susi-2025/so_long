@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:58:04 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 15:31:21 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:31:08 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ static	void	key_hook(mlx_key_data_t keydata, void *param)
 			game->next = (t_point){game->current.row, game->current.col + 1};
 		else
 			return ;
+		if (game->map->arr[game->next.row][game->next.col] != '1')
+			player_move(game);
 	}
-	if (game->map->arr[game->next.row][game->next.col] != '1')
-		player_move(game);
 }
 
 static	void	close_hook(void	*param)

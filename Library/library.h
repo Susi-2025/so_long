@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 11:53:44 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:50:12 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 void	ft_bzero(void *s, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -29,4 +30,13 @@ char	*ft_strchr(const char *s, int c);
 void	ft_free_triptr(char ***str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	**ft_matrix_dup(char **matrix, int row);
+
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
+int		ft_putptr(void *ptr, char *base, int i);
+int		ft_putnbr_base(long long number, char *base, int i);
+int		ft_putnbr_base_unsigned(unsigned long long number, char *base, int i);
+int		check_format(va_list args, const char *string, int i);
+int		check_string(va_list args, const char *string, int i);
+int		ft_printf(const char *string, ...);
 #endif
