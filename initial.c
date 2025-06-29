@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:03:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 13:20:46 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:17:53 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	initial_map(char *map_temp, t_map *map)
 		if ((int)(ft_strlen(map->arr[i++])) != map->cols)
 			map_error("Map is no rec", map);
 	i = 0;
-	while (map->arr[i])
-	{
-		printf("Map value is %s\n", map->arr[i]);
-		i++;
-	}
 	init_check_remain(map, 0, 0);
 	init_start_end(map, 0, 0);
 	valid_path(map);

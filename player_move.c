@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 11:44:05 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:47:41 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:36:04 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	player_move(t_game *game)
 	}
 	else if (game->map->arr[game->current.row][game->current.col] == 'E' &&
 			game->collect == game->map->c_collect)
-		game_error("You Win", game);
+		game_message("You Win", game);
 	game->image[P]->instances[0].x = game->current.col * PIXEL;
 	game->image[P]->instances[0].y = game->current.row * PIXEL;
 }

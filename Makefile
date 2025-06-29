@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/29 12:14:47 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/29 19:24:39 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,14 @@ MLX42 = $(MLX42_DIR)/build/libmlx42.a
 
 #Project file
 SRC =	so_long.c \
-		so_long_utils.c \
 		parsing.c \
-		par_error.c \
+		error_handle.c \
 		initial.c \
 		start_game.c \
 		load_image.c \
 		display_map.c \
 		player_move.c \
+		game_err_handle.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 

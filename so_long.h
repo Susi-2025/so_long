@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:17:26 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:35:39 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,18 @@ typedef struct s_game
 	int			move;
 }	t_game;
 
-void	par_error(char *str);
-void	par_fd_error(char *str, int fd);
-void	par_error_malloc(char *str, char *m1, char *m2, int fd);
-void	map_error(char *str, t_map *map);
-void	game_close(t_game *game, int stt);
-void	game_error(const char *str, t_game *game);
-
 char	*parsing(int ac, char **av);
 void	initial_map(char *map_temp, t_map *map);
 void	start_game(t_game *game);
 void	load_image(t_game *game);
 void	display_map(t_game *game, int row, int col);
 void	player_move(t_game *game);
+void	game_close(t_game *game, int stt);
+void	game_message(const char *str, t_game *game);
+void	game_error(const char *str, t_game *game);
+void	error_message(char *str);
+void	error_fd(char *str, int fd);
+void	error_malloc(char *str, char *m1, char *m2, int fd);
+void	map_error(char *str, t_map *map);
+
 #endif

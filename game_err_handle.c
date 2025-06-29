@@ -1,54 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_error.c                                        :+:      :+:    :+:   */
+/*   game_err_handle.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 15:33:44 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 19:38:50 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	par_error_malloc(char *str, char *m1, char *m2, int fd)
+void	free_img(mlx_t *mlx, mlx_image_t **image)
 {
-	close(fd);
-	free(m1);
-	free(m2);
-	par_error(str);
-}
+	int	i;
 
-void	par_error(char *str)
-{
-	write(1, "Error\n", 6);
-	write(1, str, ft_strlen(str));
-	write(1, "\n", 1);
-	exit (EXIT_FAILURE);
-}
-
-void	par_fd_error(char *str, int fd)
-{
-	close(fd);
-	par_error(str);
-}
-
-void	map_error(char *str, t_map *map)
-{
-	if (map && map->arr)
-		ft_free_triptr(&map->arr);
-	par_error(str);
+	if (!image)
+		return ;
+	i = 0;
+	while (image[i])
+	{
+		mlx_delete_image(mlx, image[i]);
+		i++;
+	}
+	free (image);
 }
 
 void	game_close(t_game *game, int stt)
 {
 	if (!game)
-		return ;
+		exit (stt);
 	if (game->map && game->map->arr)
 		ft_free_triptr(&game->map->arr);
 	if (game->image)
-		free(game->image);
+		free_img(game->mlx, game->image);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 	exit (stt);
@@ -56,8 +42,13 @@ void	game_close(t_game *game, int stt)
 
 void	game_error(const char *str, t_game *game)
 {
-	write(1, "Error\n", 6);
-	write(1, str, ft_strlen(str));
-	write(1, "\n", 1);
+	ft_printf("Error\n");
+	ft_printf("%s\n", str);
+	game_close(game, EXIT_FAILURE);
+}
+
+void	game_message(const char *str, t_game *game)
+{
+	ft_printf("%s\n", str);
 	game_close(game, EXIT_FAILURE);
 }
