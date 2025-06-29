@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/28 17:26:33 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/29 12:14:47 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC =	so_long.c \
 		start_game.c \
 		load_image.c \
 		display_map.c \
+		player_move.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 

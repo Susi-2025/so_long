@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 17:31:53 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:16:56 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	**image;
 	t_point		current;
+	t_point		next;
+	int			collect;
 }	t_game;
 
 void	par_error(char *str);
@@ -82,5 +84,5 @@ void	initial_map(char *map_temp, t_map *map);
 void	start_game(t_game *game);
 void	load_image(t_game *game);
 void	display_map(t_game *game, int row, int col);
-
+void	player_move(t_game *game);
 #endif

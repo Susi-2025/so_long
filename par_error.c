@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 14:28:10 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:33:44 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	map_error(char *str, t_map *map)
 
 void	game_close(t_game *game, int stt)
 {
-//	int	index;
-	
 	if (!game)
 		return ;
 	if (game->map && game->map->arr)
