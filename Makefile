@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/30 12:35:13 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/30 12:37:22 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,11 +71,10 @@ $(MLX42): .mlx42
 	@$(MAKE) mlx
 
 mlx: 
-	@$(RM) $(MLX42_DIR)
+	@rm -rf  $(MLX42)
 	@git clone https://github.com/codam-coding-college/MLX42.git $(MLX42_DIR)
 	@cd $(MLX42_DIR) && mkdir -p build && cd build && cmake .. && cmake --build . -j4
-	@cd ..
-	@$(RM) $(MLX42_DIR)/.git
+	@rm -rf $(MLX42_DIR)/.git
 	@touch .mlx42
 
 #cleaning
