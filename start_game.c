@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:58:04 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:31:08 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:29:53 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	void	key_hook(mlx_key_data_t keydata, void *param);
 
 void	start_game(t_game *game)
 {
-	mlx_set_setting(MLX_STRETCH_IMAGE, 0);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	game->mlx = mlx_init(game->map->cols * PIXEL,
 			game->map->rows * PIXEL, "game so_long", true);
 	if (!game->mlx)

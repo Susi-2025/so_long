@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/06/29 19:24:39 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/06/30 12:35:13 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,11 @@ $(NAME) : $(OBJ) $(LIB_NAME)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIB_NAME) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
 
 $(MLX42): .mlx42
+
 .mlx42: 
+	@$(MAKE) mlx
+
+mlx: 
 	@$(RM) $(MLX42_DIR)
 	@git clone https://github.com/codam-coding-college/MLX42.git $(MLX42_DIR)
 	@cd $(MLX42_DIR) && mkdir -p build && cd build && cmake .. && cmake --build . -j4
@@ -81,5 +85,5 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) $(LIB_NAME)
-
+	rm -rf $(MLX42_DIR) .mlx42
 re: fclean all
