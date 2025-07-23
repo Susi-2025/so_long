@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_unsigned.c                          :+:      :+:    :+:   */
+/*   ft_matrix_dup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 12:21:19 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:43:03 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/06/27 20:08:00 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:13:17 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "library.h"
+#include "libft.h"
 
-int	ft_putnbr_base_unsigned(unsigned long long number, char *base, int i)
+char	**ft_matrix_dup(char **matrix, int row)
 {
-	int	res;
+	char	**out;
+	int		i;
 
-	res = 0;
-	if (number / i > 0)
-		res += ft_putnbr_base_unsigned (number / i, base, i);
-	res += ft_putchar(base[number % i]);
-	return (res);
+	out = (char **)ft_calloc(row + 1, sizeof(char *));
+	if (!out)
+		return (NULL);
+	i = 0;
+	while (i < row)
+	{
+		out[i] = ft_strdup(matrix[i]);
+		if (!out[i])
+		{
+			ft_free_triptr(&out);
+			return (NULL);
+		}
+		i++;
+	}
+	return (out);
 }

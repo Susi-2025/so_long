@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 16:23:21 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:42:50 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/05/20 15:49:44 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:13:29 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-int	ft_putnbr_base(long long number, char *base, int i)
+#include "libft.h"
+
+int	ft_putchar(int c)
 {
-	int					res;
-	unsigned long long	new_no;
-
-	res = 0;
-	if (number < 0)
-	{
-		new_no = (unsigned long long)(-number);
-		res += ft_putchar('-');
-	}
-	else
-		new_no = (unsigned long long)(number);
-	if (new_no / i > 0)
-		res += ft_putnbr_base(new_no / i, base, i);
-	res += ft_putchar(base[new_no % i]);
-	return (res);
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }

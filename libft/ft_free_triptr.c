@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_free_triptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 18:59:59 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 11:50:41 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/06/27 15:36:23 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:13:11 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+#include "libft.h"
+
+void	ft_free_triptr(char ***str)
 {
-	size_t			i;
-	size_t			check_overflow;
-	unsigned char	*ptr;
+	int	i;
 
 	i = 0;
-	if (nmemb == 0 || size == 0)
+	if (*str)
 	{
-		ptr = malloc(1);
-		*ptr = '\0';
-		return (ptr);
+		while ((*str)[i] != NULL)
+		{
+			free((*str)[i]);
+			i++;
+		}
+		free(*str);
+		*str = NULL;
 	}
-	check_overflow = nmemb * size;
-	if (check_overflow / nmemb != size)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	while (i < (nmemb * size))
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return (ptr);
 }

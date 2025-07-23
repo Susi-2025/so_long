@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 15:56:58 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:43:21 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/15 10:11:02 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:14:13 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-int	ft_putptr(void *ptr, char *base, int i)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
-	int					res;
-	unsigned long long	add;
+	size_t	i;
 
-	res = 0;
-	add = (unsigned long long)ptr;
-	if (add == 0)
-		return (ft_putstr("(nil)"));
-	res += ft_putstr("0x");
-	res += ft_putnbr_base_unsigned(add, base, i);
-	return (res);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

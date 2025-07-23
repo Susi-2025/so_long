@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/30 12:26:42 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:33:57 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
-# include "MLX42.h"
-
-# include "./Library/library.h"
+# include "MLX42/MLX42.h"
+# include "./libft/libft.h"
 
 # define PIXEL 64
 

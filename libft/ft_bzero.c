@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 15:49:44 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:42:34 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/15 12:51:50 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:12:57 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-int	ft_putchar(int c)
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
 {
-	if (write(1, &c, 1) == -1)
-		return (-1);
-	return (1);
+	unsigned char	*p;
+	size_t			i;
+
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n)
+	{
+		p[i] = 0;
+		i++;
+	}
 }

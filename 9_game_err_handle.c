@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_err_handle.c                                  :+:      :+:    :+:   */
+/*   9_game_err_handle.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:06:33 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 19:38:50 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:22:02 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void	game_error(const char *str, t_game *game)
 void	game_message(const char *str, t_game *game)
 {
 	ft_printf("%s\n", str);
-	game_close(game, EXIT_FAILURE);
+	game_close(game, EXIT_SUCCESS);
 }

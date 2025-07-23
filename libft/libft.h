@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   library.h                                          :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:27:00 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/29 16:50:12 by vinguyen         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:11:44 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBRARY_H
-# define LIBRARY_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>

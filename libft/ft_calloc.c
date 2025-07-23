@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 19:25:02 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 11:51:57 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/04/21 18:59:59 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:13:07 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-char	*ft_strdup(const char *s)
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char				*out;
-	char				*temp_in;
-	unsigned int		i;
+	size_t			i;
+	size_t			check_overflow;
+	unsigned char	*ptr;
 
 	i = 0;
-	temp_in = (char *)s;
-	while (temp_in[i])
-		i++;
-	out = malloc(i + 1);
-	if (!out)
-		return (0);
-	i = 0;
-	while (temp_in[i])
+	if (nmemb == 0 || size == 0)
 	{
-		out[i] = temp_in[i];
+		ptr = malloc(1);
+		*ptr = '\0';
+		return (ptr);
+	}
+	check_overflow = nmemb * size;
+	if (check_overflow / nmemb != size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	while (i < (nmemb * size))
+	{
+		ptr[i] = 0;
 		i++;
 	}
-	out[i] = '\0';
-	return (out);
+	return (ptr);
 }

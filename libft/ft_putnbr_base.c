@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 12:51:50 by vinguyen          #+#    #+#             */
-/*   Updated: 2025/06/28 11:50:27 by vinguyen         ###   ########.fr       */
+/*   Created: 2025/05/20 16:23:21 by vinguyen          #+#    #+#             */
+/*   Updated: 2025/07/23 11:13:35 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "library.h"
 
-void	ft_bzero(void *s, size_t n)
+#include "libft.h"
+
+int	ft_putnbr_base(long long number, char *base, int i)
 {
-	unsigned char	*p;
-	size_t			i;
+	int					res;
+	unsigned long long	new_no;
 
-	i = 0;
-	p = (unsigned char *)s;
-	while (i < n)
+	res = 0;
+	if (number < 0)
 	{
-		p[i] = 0;
-		i++;
+		new_no = (unsigned long long)(-number);
+		res += ft_putchar('-');
 	}
+	else
+		new_no = (unsigned long long)(number);
+	if (new_no / i > 0)
+		res += ft_putnbr_base(new_no / i, base, i);
+	res += ft_putchar(base[new_no % i]);
+	return (res);
 }
