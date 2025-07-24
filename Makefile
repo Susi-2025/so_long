@@ -6,7 +6,7 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/07/23 14:32:51 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/07/24 17:26:24 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,13 @@ OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-all: $(MLX42_LIB) $(LIBFT_LIB) $(OBJ_DIR) $(NAME)
+all: $(MLX42_LIB) $(LIBFT_LIB) $(NAME)
+
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(MLX42_FLAGS) -c $< -o $@
+
+.SECONDARY: $(OBJ) $(LIBFT_OBJ)
 
 $(MLX42_LIB):
 	@echo "Cloning and building MLX42..."
@@ -59,12 +65,6 @@ $(LIBFT_LIB):
 $(NAME): $(OBJ) $(LIBFT_LIB) $(MLX42_LIB)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX42_LINK_FLAGS) -o $(NAME)
 	@echo "so_long execution created"
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)	
-
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(MLX42_FLAGS) -c $< -o $@
 
 #cleaning
 clean:
