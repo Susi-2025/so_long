@@ -6,12 +6,17 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/23 10:57:16 by vinguyen          #+#    #+#              #
-#    Updated: 2025/07/23 14:14:10 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/07/26 16:53:07 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
+OBJ_DIR = Obj
 
-SRCS = ft_bzero.c \
+SRC = ft_bzero.c \
        ft_calloc.c \
        ft_free_triptr.c \
        ft_gnl.c \
@@ -29,23 +34,22 @@ SRCS = ft_bzero.c \
        ft_strlen.c \
        ft_strncmp.c
 
-OBJS = $(SRCS:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LIBC = ar rcs
-RM = rm -f
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
-$(NAME): $(OBJS)
-	$(LIBC) $(NAME) $(OBJS)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-.c.o:
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
+
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -rf $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,20 +6,19 @@
 #    By: vinguyen <vinguyen@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:34:01 by vinguyen          #+#    #+#              #
-#    Updated: 2025/07/24 17:26:24 by vinguyen         ###   ########.fr        #
+#    Updated: 2025/07/26 17:03:13 by vinguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
 SRC_DIR = .
-OBJ_DIR = Object
+OBJ_DIR = ./Object
 
-#Library files
-LIBFT_DIR = libft
+LIBFT_DIR = ./libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
-LIBFT_SRC = $(wildcard $(LIBFT_DIR)/*.c)
-LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
 
 MLX42_DIR = ./MLX42
 MLX42_LIB = $(MLX42_DIR)/build/libmlx42.a
@@ -38,10 +37,6 @@ SRC =	0_so_long.c \
 		9_game_err_handle.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
-
-# Compiler
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
 
 all: $(MLX42_LIB) $(LIBFT_LIB) $(NAME)
 
